@@ -1,0 +1,14 @@
+.main-container {
+  display: flex;
+  margin-top: 1rem;
+}
+.components-div {
+  flex-basis: 80%;
+  margin-left: 1rem;
+}
+
+@media screen and (max-width: 760px) {
+  .components-div {
+    margin: 0 auto;
+  }
+}
