@@ -1,0 +1,50 @@
+.signup-card,
+.login-card {
+  margin: 1rem auto;
+}
+
+.signup,
+.login {
+  max-width: 24rem;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 9px 1px var(--success-color);
+}
+
+form label {
+  color: var(--off-white);
+}
+form .input {
+  margin: 1rem 0;
+  font-weight: 500;
+  position: relative;
+}
+form .input-text {
+  font-size: 1.1rem;
+  position: relative;
+}
+
+form .eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+form .form-btn-div {
+  margin-top: 1.5rem;
+}
+.error {
+  color: red;
+  padding: 0.5rem 0;
+}
+
+@media screen and (max-width: 760px) {
+  .signup,
+  .login {
+    max-width: 22rem;
+    margin: 0 auto;
+  }
+}

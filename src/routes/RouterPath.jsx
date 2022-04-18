@@ -3,6 +3,7 @@ import {
   Home,
   Explore,
   Liked,
+  Playlist,
   WatchLater,
   History,
   Login,
@@ -10,17 +11,49 @@ import {
   NotFound,
 } from "../pages";
 import MockAPI from "../mockMan";
+import { RequireAuth } from "../components";
 export const RouterPath = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/explore" element={<Explore />} />
-      <Route path="/liked" element={<Liked />} />
-      <Route path="/watchlater" element={<WatchLater />} />
-      <Route path="/history" element={<History />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/mockman" element={<MockAPI />} />
+
+      <Route
+        path="/liked"
+        element={
+          <RequireAuth>
+            <Liked />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/playlist"
+        element={
+          <RequireAuth>
+            <Playlist />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/watchlater"
+        element={
+          <RequireAuth>
+            <WatchLater />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/history"
+        element={
+          <RequireAuth>
+            <History />
+          </RequireAuth>
+        }
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
