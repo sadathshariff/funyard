@@ -33,7 +33,6 @@ export const handleLogin = async (
 export const handleSingup = async (signupDetails, authDispatch, navigate) => {
   try {
     const res = await axios.post("/api/auth/signup", signupDetails);
-    console.log(res);
     if (res.status === 201) {
       authDispatch({
         type: "SIGNUP",
