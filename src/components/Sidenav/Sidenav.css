@@ -1,7 +1,6 @@
 .sidenav-container {
   padding: 1rem;
   flex-basis: 20%;
-  height: 100vh;
   border-radius: 5px;
   box-shadow: 0 6px 6px 2px rgba(255, 255, 255, 0.5);
 }
