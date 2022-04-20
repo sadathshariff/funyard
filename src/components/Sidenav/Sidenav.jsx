@@ -10,11 +10,7 @@ import { BiLike } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
 export const Sidenav = ({ showSidenav, toggleSidenav }) => {
   const getActiveStyle = ({ isActive }) => {
-    isActive
-      ? {
-          color: "var(--primary-color)",
-        }
-      : {};
+    isActive;
   };
   return (
     <div

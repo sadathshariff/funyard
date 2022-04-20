@@ -1,3 +1,4 @@
+@import "react-slideshow-image/dist/styles.css";
 .main-container {
   display: flex;
   margin-top: 1rem;
@@ -5,6 +6,10 @@
 .components-div {
   flex-basis: 80%;
   margin-left: 1rem;
+}
+
+.m-tb-1 {
+  margin: 1rem 0;
 }
 
 @media screen and (max-width: 760px) {
