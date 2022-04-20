@@ -1,0 +1,37 @@
+.home-container {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.banner-div {
+  background-color: red;
+  max-width: 100%;
+}
+hr {
+  overflow: visible; /* For IE */
+  height: 30px;
+  border-style: solid;
+  border-color: var(--off-white);
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+}
+.react-slideshow-container .default-nav:first-of-type,
+.default-nav:last-of-type {
+  display: none;
+}
+.categories-div {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+@media screen and (max-width: 760px) {
+  .home-container {
+    width: 100%;
+  }
+  .categories-div,
+  .hero-heading {
+    text-align: center;
+  }
+}
