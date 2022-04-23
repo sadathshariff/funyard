@@ -1,33 +1,32 @@
 import "./Category.css";
-import PulseLoader from "react-spinners/PulseLoader";
-import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 import { UseAxios } from "../../hooks";
+import { useVideos } from "../../context";
+import { Loader } from "../index";
 export const Category = () => {
   const { response, loading, error } = UseAxios("/api/categories");
+  const { videoDispatch } = useVideos();
 
   const categories = response.categories || [];
-  const override = css`
-    display: block;
-    margin: 0 auto;
-    border-color: red;
-  `;
 
   return (
     <>
       {loading ? (
-        <PulseLoader
-          color={"#FFF"}
-          loading={loading}
-          css={override}
-          size={15}
-          margin={3}
-        />
+        <Loader loading={loading} />
       ) : (
         <>
           {categories.map(({ _id, categoryName, url, description }) => (
-            <div className="category-card" key={_id}>
-              <Link to={`/explore/${categoryName}`}>
+            <div
+              className="category-card"
+              key={_id}
+              onClick={() =>
+                videoDispatch({
+                  type: "FILTER_BY_CATEGORY",
+                  payload: categoryName,
+                })
+              }
+            >
+              <Link to="/explore">
                 <img
                   src={url}
                   alt={categoryName}
