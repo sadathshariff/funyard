@@ -9,6 +9,7 @@ import {
   Login,
   Signup,
   NotFound,
+  VideoPage,
 } from "../pages";
 import MockAPI from "../mockMan";
 import { RequireAuth } from "../components";
@@ -19,6 +20,7 @@ export const RouterPath = () => {
       <Route path="/explore" element={<Explore />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/video/:videoId" element={<VideoPage />} />
       <Route path="/mockman" element={<MockAPI />} />
 
       <Route

@@ -5,3 +5,5 @@ export { Sidenav } from "./Sidenav/Sidenav";
 export { Header } from "./Header/Header";
 export { Banner } from "./Banner/Banner";
 export { Category } from "./Categories/Category";
+export { VideoCard } from "./VideoCard/VideoCard";
+export { Loader } from "./Loader/Loader";

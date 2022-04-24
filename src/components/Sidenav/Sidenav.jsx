@@ -8,10 +8,12 @@ import {
 } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
+import { useVideos } from "../../context";
 export const Sidenav = ({ showSidenav, toggleSidenav }) => {
   const getActiveStyle = ({ isActive }) => {
     isActive;
   };
+  const { videoDispatch } = useVideos();
   return (
     <div
       className={
@@ -21,7 +23,15 @@ export const Sidenav = ({ showSidenav, toggleSidenav }) => {
       <ul className="list">
         <li>
           <NavLink to="/" style={getActiveStyle}>
-            <div className="flex side-item-content">
+            <div
+              className="flex side-item-content"
+              onClick={() =>
+                videoDispatch({
+                  type: "FILTER_BY_CATEGORY",
+                  payload: "ALL",
+                })
+              }
+            >
               <AiOutlineHome size={25} />
               <p className="small-text-2">Home</p>
             </div>

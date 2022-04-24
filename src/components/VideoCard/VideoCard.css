@@ -1,0 +1,38 @@
+.videoCard {
+  background-color: black;
+  color: var(--off-white);
+  width: 18rem;
+  height: 15rem;
+  margin: 1rem;
+  border-radius: 5px 5px;
+}
+.videoCard:hover {
+  box-shadow: 0 0 9px 1px var(--success-color);
+  cursor: pointer;
+}
+
+.icon-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-container {
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: row;
+
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 3;
+  right: 0%;
+  top: 100%;
+}
+.videoCard .menu-container ul {
+  display: flex;
+  flex-direction: row;
+}

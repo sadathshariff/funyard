@@ -6,3 +6,4 @@ export { WatchLater } from "./WatchLater/WatchLater";
 export { Liked } from "./Liked/Liked";
 export { Playlist } from "./Playlist/Playlist";
 export { NotFound } from "./NotFound/NotFound";
+export { VideoPage } from "./VideoPage/VideoPage";
