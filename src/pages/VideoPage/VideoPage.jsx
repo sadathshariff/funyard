@@ -2,17 +2,20 @@ import "./VideoPage.css";
 import YouTube from "react-youtube";
 
 import { useParams } from "react-router-dom";
-import { useVideos } from "../../context";
+import { useAuth, useVideos } from "../../context";
 
 import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
+import { addToHistory } from "../../context/Video/history";
 export const VideoPage = () => {
   const { videoId } = useParams();
-  const { videos } = useVideos();
+  const { videos, videoDispatch } = useVideos();
+  const { authState } = useAuth();
+  const { isLoggedIn } = authState;
 
   const opts = {
     playerVars: {
-      autoplay: 0,
+      autoplay: 1,
     },
   };
 
@@ -21,10 +24,19 @@ export const VideoPage = () => {
   };
 
   const data = findVideoDetails(videos);
+
+  const handlePlay = () => {
+    addToHistory(isLoggedIn, data, videoDispatch);
+  };
   return (
     <>
       <div className="videoplayer-container">
-        <YouTube class="video-iframe" videoId={videoId} opts={opts} />
+        <YouTube
+          class="video-iframe"
+          videoId={videoId}
+          opts={opts}
+          onReady={handlePlay}
+        />
       </div>
       <div className="video-footer">
         <div className="video-icons">
