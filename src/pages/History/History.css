@@ -1,0 +1,34 @@
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  min-height: 60vh;
+}
+.history-container {
+  width: 100%;
+}
+.clear-all-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.history-videos {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+.history-card {
+  width: 20rem;
+  height: 15rem;
+  border: 1px solid var(--gray-color);
+}
+.history-card .card-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trash-icon {
+  cursor: pointer;
+}
