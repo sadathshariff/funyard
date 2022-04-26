@@ -9,6 +9,10 @@ export const videoReducer = (state, action) => {
     case "DELETE_FROM_HISTORY":
     case "DELETE_ALL_FROM_HISTORY":
       return { ...state, history: action.payload };
+    case "GET_ALL_LIKED_VIDEOS":
+    case "LIKE_VIDEO":
+    case "UNLIKE_VIDEO":
+      return { ...state, liked: action.payload };
     default:
       return { ...state };
   }
