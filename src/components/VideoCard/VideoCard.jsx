@@ -2,10 +2,22 @@ import "./VideoCard.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdMoreVert, MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
-import { BiLike } from "react-icons/bi";
+import { BiLike, BiDislike } from "react-icons/bi";
+import { useAuth, useVideos } from "../../context";
+import {
+  isVideoLiked,
+  likeVideo,
+  unLikeVideo,
+} from "../../context/Video/liked";
 export const VideoCard = ({ video }) => {
   const { _id, title, channelTitle, thumbnails } = video;
   const [showMenu, setShowMenu] = useState(false);
+
+  const { authState } = useAuth();
+  const { videoDispatch, videoState } = useVideos();
+  const { isLoggedIn } = authState;
+  const { liked, watchLater } = videoState;
+  const isLiked = isVideoLiked(_id, liked);
   return (
     <>
       <div className="videoCard">
@@ -23,7 +35,22 @@ export const VideoCard = ({ video }) => {
               <div className="menu-container list">
                 <ul>
                   <li>
-                    <BiLike size={20} />
+                    {isLiked ? (
+                      <BiDislike
+                        color={"black"}
+                        size={20}
+                        onClick={() =>
+                          unLikeVideo(isLoggedIn, video, videoDispatch)
+                        }
+                      />
+                    ) : (
+                      <BiLike
+                        size={20}
+                        onClick={() =>
+                          likeVideo(isLoggedIn, video, videoDispatch)
+                        }
+                      />
+                    )}
                   </li>
                   <li>
                     <MdOutlineWatchLater size={20} />
