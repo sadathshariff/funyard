@@ -3,10 +3,16 @@ import YouTube from "react-youtube";
 import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
+import { IoCheckmarkSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 
 import { useAuth, useVideos } from "../../context";
 import { addToHistory } from "../../context/Video/history";
+import {
+  isVideoWatchlater,
+  addToWatchlater,
+  removeFromWatchlater,
+} from "../../context/Video/watchlater";
 import {
   isVideoLiked,
   likeVideo,
@@ -18,7 +24,7 @@ export const VideoPage = () => {
 
   const { authState } = useAuth();
   const { isLoggedIn } = authState;
-  const { videos, liked } = videoState;
+  const { videos, liked, watchLater } = videoState;
 
   const opts = {
     playerVars: {
@@ -32,6 +38,7 @@ export const VideoPage = () => {
 
   const data = findVideoDetails(videos);
   const isLiked = isVideoLiked(data?._id, liked);
+  const isWatchLater = isVideoWatchlater(data?._id, watchLater);
   const handlePlay = () => {
     addToHistory(isLoggedIn, data, videoDispatch);
   };
@@ -61,7 +68,20 @@ export const VideoPage = () => {
                 onClick={() => likeVideo(isLoggedIn, data, videoDispatch)}
               />
             )}
-            <MdOutlineWatchLater size={25} />
+            {isWatchLater ? (
+              <IoCheckmarkSharp
+                size={25}
+                color={"var(--primary-color"}
+                onClick={() =>
+                  removeFromWatchlater(isLoggedIn, data, videoDispatch)
+                }
+              />
+            ) : (
+              <MdOutlineWatchLater
+                size={25}
+                onClick={() => addToWatchlater(isLoggedIn, data, videoDispatch)}
+              />
+            )}
             <MdPlaylistAdd size={25} />
           </div>
         </div>

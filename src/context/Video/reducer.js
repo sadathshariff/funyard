@@ -13,6 +13,10 @@ export const videoReducer = (state, action) => {
     case "LIKE_VIDEO":
     case "UNLIKE_VIDEO":
       return { ...state, liked: action.payload };
+    case "ADD_TO_WATCHLATER":
+    case "GET_ALL_WATCHLATER":
+    case "REMOVE_FROM_WATCHLATER":
+      return { ...state, watchLater: action.payload };
     default:
       return { ...state };
   }

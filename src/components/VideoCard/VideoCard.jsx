@@ -3,12 +3,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdMoreVert, MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
 import { BiLike, BiDislike } from "react-icons/bi";
+import { IoCheckmarkSharp } from "react-icons/io5";
 import { useAuth, useVideos } from "../../context";
 import {
   isVideoLiked,
   likeVideo,
   unLikeVideo,
 } from "../../context/Video/liked";
+import {
+  addToWatchlater,
+  isVideoWatchlater,
+} from "../../context/Video/watchlater";
 export const VideoCard = ({ video }) => {
   const { _id, title, channelTitle, thumbnails } = video;
   const [showMenu, setShowMenu] = useState(false);
@@ -18,6 +23,8 @@ export const VideoCard = ({ video }) => {
   const { isLoggedIn } = authState;
   const { liked, watchLater } = videoState;
   const isLiked = isVideoLiked(_id, liked);
+  const isWatchlater = isVideoWatchlater(_id, watchLater);
+  console.log(isWatchlater);
   return (
     <>
       <div className="videoCard">
@@ -53,7 +60,22 @@ export const VideoCard = ({ video }) => {
                     )}
                   </li>
                   <li>
-                    <MdOutlineWatchLater size={20} />
+                    {isWatchlater ? (
+                      <IoCheckmarkSharp
+                        size={20}
+                        color={"black"}
+                        onClick={() =>
+                          removeFromWatchlater(isLoggedIn, video, videoDispatch)
+                        }
+                      />
+                    ) : (
+                      <MdOutlineWatchLater
+                        size={20}
+                        onClick={() =>
+                          addToWatchlater(isLoggedIn, video, videoDispatch)
+                        }
+                      />
+                    )}
                   </li>
                   <li>
                     <MdPlaylistAdd size={20} />
