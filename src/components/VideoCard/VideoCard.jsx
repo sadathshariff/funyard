@@ -24,7 +24,7 @@ export const VideoCard = ({ video }) => {
   const { liked, watchLater } = videoState;
   const isLiked = isVideoLiked(_id, liked);
   const isWatchlater = isVideoWatchlater(_id, watchLater);
-  console.log(isWatchlater);
+
   return (
     <>
       <div className="videoCard">
