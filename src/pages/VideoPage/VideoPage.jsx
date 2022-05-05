@@ -1,6 +1,11 @@
 import "./VideoPage.css";
 import YouTube from "react-youtube";
-import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
+import { useState } from "react";
+import {
+  MdOutlineWatchLater,
+  MdPlaylistAdd,
+  MdPlaylistAddCheck,
+} from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { IoCheckmarkSharp } from "react-icons/io5";
@@ -18,13 +23,19 @@ import {
   likeVideo,
   unLikeVideo,
 } from "../../context/Video/liked";
+import {
+  isVideoPresentInPlaylist,
+  removeVideoFromPlaylist,
+} from "../../context/Video/playlist";
+import { Modal } from "../../components";
 export const VideoPage = () => {
   const { videoId } = useParams();
-  const { videoDispatch, videoState } = useVideos();
+  const { videoDispatch, videoState, showModal, setShowModal, setVideo } =
+    useVideos();
 
   const { authState } = useAuth();
   const { isLoggedIn } = authState;
-  const { videos, liked, watchLater } = videoState;
+  const { videos, liked, watchLater, playlists } = videoState;
 
   const opts = {
     playerVars: {
@@ -39,6 +50,7 @@ export const VideoPage = () => {
   const data = findVideoDetails(videos);
   const isLiked = isVideoLiked(data?._id, liked);
   const isWatchLater = isVideoWatchlater(data?._id, watchLater);
+
   const handlePlay = () => {
     addToHistory(isLoggedIn, data, videoDispatch);
   };
@@ -82,13 +94,21 @@ export const VideoPage = () => {
                 onClick={() => addToWatchlater(isLoggedIn, data, videoDispatch)}
               />
             )}
-            <MdPlaylistAdd size={25} />
+            <MdPlaylistAdd
+              size={25}
+              onClick={() => {
+                setShowModal(true);
+                setVideo(data);
+              }}
+            />
           </div>
         </div>
         <h4 className="headline-4">Channel Name : {data?.channelTitle}</h4>
         <p className="small-text-3">Description :</p>
         <p className="small-text-3">{data?.description}</p>
       </div>
+
+      {showModal && <Modal setShowModal={setShowModal} showPlaylists={true} />}
     </>
   );
 };

@@ -1,11 +1,19 @@
 import axios from "axios";
-import { createContext, useContext, useReducer, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import { videoReducer } from "./reducer";
 import { FilterByCategory, Compose } from "./utils";
 
 const VideoContext = createContext(null);
 
 const VideoProvider = ({ children }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [video, setVideo] = useState({});
   const [videoState, videoDispatch] = useReducer(videoReducer, {
     videos: [],
     liked: [],
@@ -35,7 +43,14 @@ const VideoProvider = ({ children }) => {
   }, []);
   return (
     <VideoContext.Provider
-      value={{ videoState, videoDispatch, videos: getFilteredVideos }}
+      value={{
+        videoState,
+        videoDispatch,
+        videos: getFilteredVideos,
+        showModal,
+        setShowModal,
+        video, setVideo
+      }}
     >
       {children}
     </VideoContext.Provider>

@@ -10,9 +10,11 @@ import {
   Signup,
   NotFound,
   VideoPage,
+  SinglePlaylistPage,
 } from "../pages";
 import MockAPI from "../mockMan";
 import { RequireAuth } from "../components";
+
 export const RouterPath = () => {
   return (
     <Routes>
@@ -39,6 +41,14 @@ export const RouterPath = () => {
           </RequireAuth>
         }
       />
+      <Route
+        path="/playlists/:playlistId"
+        element={
+          <RequireAuth>
+            <SinglePlaylistPage />
+          </RequireAuth>
+        }
+      ></Route>
       <Route
         path="/watchlater"
         element={
