@@ -1,0 +1,8 @@
+.playlist-card {
+  padding: 0.5rem;
+  background-color: var(--gray-color);
+  width: 15rem;
+  border-radius: 5px;
+  cursor: pointer;
+  height: max-content;
+}

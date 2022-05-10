@@ -1,4 +1,5 @@
 import "./VideoCard.css";
+import { motion } from "framer-motion/dist/framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdMoreVert, MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
@@ -14,12 +15,20 @@ import {
   addToWatchlater,
   isVideoWatchlater,
 } from "../../context/Video/watchlater";
+import { Modal } from "../../components";
 export const VideoCard = ({ video }) => {
   const { _id, title, channelTitle, thumbnails } = video;
   const [showMenu, setShowMenu] = useState(false);
 
   const { authState } = useAuth();
-  const { videoDispatch, videoState } = useVideos();
+  const {
+    videoDispatch,
+    videoState,
+    showModal,
+    setShowModal,
+
+    setVideo,
+  } = useVideos();
   const { isLoggedIn } = authState;
   const { liked, watchLater } = videoState;
   const isLiked = isVideoLiked(_id, liked);
@@ -27,7 +36,13 @@ export const VideoCard = ({ video }) => {
 
   return (
     <>
-      <div className="videoCard">
+      <motion.div
+        layout
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        className="videoCard"
+      >
         <Link to={`/video/${_id}`}>
           <img src={thumbnails.medium.url} alt={title} className="resp-img " />
         </Link>
@@ -78,16 +93,23 @@ export const VideoCard = ({ video }) => {
                     )}
                   </li>
                   <li>
-                    <MdPlaylistAdd size={20} />
+                    <MdPlaylistAdd
+                      size={20}
+                      onClick={() => {
+                        setShowModal(true);
+                        setShowMenu(false);
+                        setVideo(video);
+                      }}
+                    />
                   </li>
                 </ul>
               </div>
             )}
           </div>
-
           <p className="small-text-3 ">{channelTitle}</p>
         </div>
-      </div>
+      </motion.div>
+      {showModal && <Modal setShowModal={setShowModal} showPlaylists={true} />}
     </>
   );
 };
