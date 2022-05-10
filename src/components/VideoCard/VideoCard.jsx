@@ -1,4 +1,5 @@
 import "./VideoCard.css";
+import { motion } from "framer-motion/dist/framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdMoreVert, MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
@@ -35,7 +36,13 @@ export const VideoCard = ({ video }) => {
 
   return (
     <>
-      <div className="videoCard">
+      <motion.div
+        layout
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        className="videoCard"
+      >
         <Link to={`/video/${_id}`}>
           <img src={thumbnails.medium.url} alt={title} className="resp-img " />
         </Link>
@@ -101,7 +108,7 @@ export const VideoCard = ({ video }) => {
           </div>
           <p className="small-text-3 ">{channelTitle}</p>
         </div>
-      </div>
+      </motion.div>
       {showModal && <Modal setShowModal={setShowModal} showPlaylists={true} />}
     </>
   );
