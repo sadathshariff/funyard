@@ -28,7 +28,6 @@ export const SinglePlaylistPage = () => {
           authorization: isLoggedIn,
         },
       });
-      console.log(res);
       if (res.status === 200) {
         setSinglePlaylist(res.data.playlist);
       }
@@ -39,12 +38,12 @@ export const SinglePlaylistPage = () => {
 
   useEffect(() => {
     getVideoFromPlaylist();
-  }, []);
+  }, [singlePlaylist]);
 
   return (
     <>
       <div className="history-container">
-        {singlePlaylist.videos?.length === 0 ? (
+        {singlePlaylist?.videos?.length === 0 ? (
           <div className="empty-container">
             <h3 className="headline-3 text-center">
               you don't any videos in this Playlist - {singlePlaylist?.title}
