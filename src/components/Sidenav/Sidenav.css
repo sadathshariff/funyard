@@ -1,9 +1,16 @@
 .sidenav-container {
   padding: 1rem;
-  flex-basis: 20%;
   border-radius: 5px;
-  height: 100vh;
-  box-shadow: 0 6px 6px 2px rgba(255, 255, 255, 0.5);
+  height: 100%;
+  box-shadow: 0 6px 6px 4px rgb(0 0 0 / 50%);
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  z-index: 2;
+  background-color: var(--text-color);
 }
 
 .side-item-content {
@@ -13,7 +20,7 @@
   padding-left: 1rem;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 760px) {
   .sidenav-container {
     display: none;
   }
@@ -30,6 +37,5 @@
     padding: 1rem;
     height: 100vh;
     border-radius: 5px;
-    box-shadow: 0 6px 6px 2px rgba(0, 0, 0, 0.5);
   }
 }

@@ -6,7 +6,7 @@
 }
 
 .category-card:hover {
-  box-shadow: 0 0 9px 1px var(--success-color);
+  box-shadow: 0 0 6px 1px var(--secondary-color);
   cursor: pointer;
 }
 

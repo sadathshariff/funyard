@@ -4,29 +4,27 @@ import { Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import Banner1 from "../../assets/Banner1.jpg";
 import Banner2 from "../../assets/Banner2.jpg";
+import Banner3 from "../../assets/Banner3.jpg";
 import Banner4 from "../../assets/Banner4.jpg";
+import Banner5 from "../../assets/Banner5.jpg";
 
 export const Banner = () => {
   const properties = {
-    duration: 3000,
+    duration: 1500,
     transitionDuration: 1000,
     easing: "ease",
   };
-  const fadeImages = [Banner1, Banner2, Banner4];
+  const fadeImages = [Banner2, Banner3, Banner4, Banner1, Banner5];
 
   return (
     <div className="hero_container">
-      <img src={Banner2} className="hero" alt="Banner" />
+      <Fade {...properties}>
+        {fadeImages.map((fadeImage, index) => (
+          <div className="hero_container" key={index}>
+            <img src={fadeImage} className="hero  resp-img" />
+          </div>
+        ))}
+      </Fade>
     </div>
-
-    // will be adding the sliders later
-
-    // <Fade className="hero_container" {...properties}>
-    //   {fadeImages.map((fadeImage, index) => (
-    //     <div className="hero_container" key={index}>
-    //       <img src={fadeImage} className="hero" />
-    //     </div>
-    //   ))}
-    // </Fade>
   );
 };

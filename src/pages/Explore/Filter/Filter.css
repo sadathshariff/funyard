@@ -1,8 +1,9 @@
 .filter-container {
-  /* width: 80%; */
-  margin: 1rem auto;
+  width: 60%;
+
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .filter {
