@@ -22,7 +22,7 @@ export const addToHistory = async (isLoggedIn, video, videoDispatch) => {
       }
     }
   } else {
-    ToastMsg("Please Login", "info");
+    ToastMsg("Please Login", "warning");
   }
 };
 

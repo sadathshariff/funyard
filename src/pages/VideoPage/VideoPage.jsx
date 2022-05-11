@@ -90,8 +90,12 @@ export const VideoPage = () => {
             <MdPlaylistAdd
               size={25}
               onClick={() => {
-                setShowModal(true);
-                setVideo(data);
+                if (isLoggedIn) {
+                  setShowModal(true);
+                  setVideo(data);
+                } else {
+                  ToastMsg("Please Login", "warning");
+                }
               }}
             />
           </div>

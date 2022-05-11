@@ -16,6 +16,7 @@ import {
   isVideoWatchlater,
 } from "../../context/Video/watchlater";
 import { Modal } from "../../components";
+import { ToastMsg } from "../Toast/Toast";
 export const VideoCard = ({ video }) => {
   const { _id, title, channelTitle, thumbnails } = video;
   const [showMenu, setShowMenu] = useState(false);
@@ -96,9 +97,13 @@ export const VideoCard = ({ video }) => {
                     <MdPlaylistAdd
                       size={20}
                       onClick={() => {
-                        setShowModal(true);
-                        setShowMenu(false);
-                        setVideo(video);
+                        if (isLoggedIn) {
+                          setShowModal(true);
+                          setShowMenu(false);
+                          setVideo(video);
+                        } else {
+                          ToastMsg("Please Login", "warning");
+                        }
                       }}
                     />
                   </li>

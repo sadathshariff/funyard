@@ -47,8 +47,6 @@ export const addNewPlaylist = async (isLoggedIn, playlist, videoDispatch) => {
       console.log(error);
       ToastMsg("Couldn't add new playlist,try after sometime", "error");
     }
-  } else {
-    ToastMsg("Please Login to continue", "warning");
   }
 };
 
@@ -103,8 +101,6 @@ export const addVideoToPlaylist = async (
       console.log(error);
       ToastMsg("Couldn't add Video to Playlist", "error");
     }
-  } else {
-    ToastMsg("Please Login", "warning");
   }
 };
 export const removeVideoFromPlaylist = async (
