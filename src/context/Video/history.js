@@ -17,7 +17,9 @@ export const addToHistory = async (isLoggedIn, video, videoDispatch) => {
       }
     } catch (error) {
       console.log(error);
-      ToastMsg("Some Error Occured", "error");
+      if (error.response.status != 409) {
+        ToastMsg("Some Error Occured", "error");
+      }
     }
   } else {
     ToastMsg("Please Login", "info");

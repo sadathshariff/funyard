@@ -2,39 +2,53 @@ import axios from "axios";
 import { ToastMsg } from "../../components";
 
 export const getAllPlaylist = async (isLoggedIn, videoDispatch) => {
-  try {
-    const res = await axios.get("/api/user/playlists", {
-      headers: {
-        authorization: isLoggedIn,
-      },
-    });
-    if (res.status === 200) {
-      videoDispatch({ type: "GET_ALL_PLAYLISTS", payload: res.data.playlists });
+  if (isLoggedIn) {
+    try {
+      const res = await axios.get("/api/user/playlists", {
+        headers: {
+          authorization: isLoggedIn,
+        },
+      });
+      if (res.status === 200) {
+        videoDispatch({
+          type: "GET_ALL_PLAYLISTS",
+          payload: res.data.playlists,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      ToastMsg("Couldn't get playlists,try after sometime", "error");
     }
-  } catch (error) {
-    console.log(error);
-    ToastMsg("Couldn't get playlists,try after sometime", "error");
+  } else {
+    ToastMsg("Please Login to Continue", "warning");
   }
 };
 
 export const addNewPlaylist = async (isLoggedIn, playlist, videoDispatch) => {
-  try {
-    const res = await axios.post(
-      "/api/user/playlists",
-      { playlist },
-      {
-        headers: {
-          authorization: isLoggedIn,
-        },
+  if (isLoggedIn) {
+    try {
+      const res = await axios.post(
+        "/api/user/playlists",
+        { playlist },
+        {
+          headers: {
+            authorization: isLoggedIn,
+          },
+        }
+      );
+      if (res.status === 201) {
+        videoDispatch({
+          type: "ADD_NEW_PLAYLIST",
+          payload: res.data.playlists,
+        });
+        ToastMsg("Added  new playlist", "success");
       }
-    );
-    if (res.status === 201) {
-      videoDispatch({ type: "ADD_NEW_PLAYLIST", payload: res.data.playlists });
-      ToastMsg("Added  new playlist", "success");
+    } catch (error) {
+      console.log(error);
+      ToastMsg("Couldn't add new playlist,try after sometime", "error");
     }
-  } catch (error) {
-    console.log(error);
-    ToastMsg("Couldn't add new playlist,try after sometime", "error");
+  } else {
+    ToastMsg("Please Login to continue", "warning");
   }
 };
 
@@ -49,7 +63,7 @@ export const deletePlaylist = async (
       headers: {
         authorization: isLoggedIn,
       },
-    });   
+    });
     if (res.status === 200) {
       videoDispatch({ type: "DELETE_PLAYLIST", payload: res.data.playlists });
       ToastMsg("Playlist Deleted", "success");
@@ -67,26 +81,30 @@ export const addVideoToPlaylist = async (
   playlistId,
   videoDispatch
 ) => {
-  try {
-    const res = await axios.post(
-      `/api/user/playlists/${playlistId}`,
-      { video },
-      {
-        headers: {
-          authorization: isLoggedIn,
-        },
+  if (isLoggedIn) {
+    try {
+      const res = await axios.post(
+        `/api/user/playlists/${playlistId}`,
+        { video },
+        {
+          headers: {
+            authorization: isLoggedIn,
+          },
+        }
+      );
+      if (res.status === 201) {
+        videoDispatch({
+          type: "ADD_VIDEO_TO_PLAYLIST",
+          payload: res.data.playlist,
+        });
+        ToastMsg("Video  added to Playlist", "success");
       }
-    );
-    if (res.status === 201) {
-      videoDispatch({
-        type: "ADD_VIDEO_TO_PLAYLIST",
-        payload: res.data.playlist,
-      });
-      ToastMsg("Video  added to Playlist", "success");
+    } catch (error) {
+      console.log(error);
+      ToastMsg("Couldn't add Video to Playlist", "error");
     }
-  } catch (error) {
-    console.log(error);
-    ToastMsg("Couldn't add Video to Playlist", "error");
+  } else {
+    ToastMsg("Please Login", "warning");
   }
 };
 export const removeVideoFromPlaylist = async (

@@ -17,22 +17,26 @@ export const getAllLikedVideos = async (isLoggedIn, videoDispatch) => {
 };
 
 export const likeVideo = async (isLoggedIn, video, videoDispatch) => {
-  try {
-    const res = await axios.post(
-      "/api/user/likes",
-      { video },
-      {
-        headers: {
-          authorization: isLoggedIn,
-        },
+  if (isLoggedIn) {
+    try {
+      const res = await axios.post(
+        "/api/user/likes",
+        { video },
+        {
+          headers: {
+            authorization: isLoggedIn,
+          },
+        }
+      );
+      if (res.status === 201) {
+        videoDispatch({ type: "LIKE_VIDEO", payload: res.data.likes });
+        ToastMsg("Video added to your liked videos", "success");
       }
-    );
-    if (res.status === 201) {
-      videoDispatch({ type: "LIKE_VIDEO", payload: res.data.likes });
-      ToastMsg("Video added to your liked videos", "success");
+    } catch (error) {
+      ToastMsg("Couldn't like Video,Some Error Occured", "error");
     }
-  } catch (error) {
-    ToastMsg("Couldn't like Video,Some Error Occured", "error");
+  } else {
+    ToastMsg("Please Login in", "warning");
   }
 };
 
