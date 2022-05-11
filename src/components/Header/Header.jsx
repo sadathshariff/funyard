@@ -1,6 +1,6 @@
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { MdMenu } from "react-icons/md";
+import { MdMenu, MdLogout } from "react-icons/md";
 import { useAuth, useVideos } from "../../context";
 import { logoutHandler } from "../../context/Auth/util";
 import { Button } from "../index";
@@ -9,10 +9,10 @@ export const Header = ({ toggleSidenav }) => {
   const { authState, authDispatch } = useAuth();
   const { isLoggedIn } = authState;
   const navigate = useNavigate();
-  const { videoDispatch } = useVideos();
+  const { videoDispatch, videoState } = useVideos();
 
   return (
-    <header>
+    <header className="header">
       <nav className="navbar-container">
         <div className="menu-btn">
           <MdMenu size={30} onClick={toggleSidenav} />
@@ -28,11 +28,11 @@ export const Header = ({ toggleSidenav }) => {
         >
           <Link to="/">FunYard</Link>
         </h1>
+
         <div className="nav-item-links nav-button">
           {isLoggedIn ? (
-            <Button
-              name={"Logout"}
-              btnvariant={"btn-success"}
+            <MdLogout
+              size={25}
               onClick={() => logoutHandler(authDispatch, navigate)}
             />
           ) : (

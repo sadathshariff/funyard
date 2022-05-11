@@ -5,6 +5,11 @@
 
 @media screen and (max-width: 760px) {
   .components-div {
-    flex-basis: auto;
+    margin-left: 0rem;
+  }
+  .video-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }

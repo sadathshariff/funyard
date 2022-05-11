@@ -32,3 +32,11 @@
 .trash-icon {
   cursor: pointer;
 }
+
+@media screen and (max-width: 760px) {
+  .history-videos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

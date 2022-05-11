@@ -3,7 +3,6 @@ const FilterByCategory = (state, data) => {
     ? data
     : data.filter((v) => v.category === state.category);
 };
-
 const Compose =
   (state, ...functions) =>
   (data) => {
@@ -11,6 +10,5 @@ const Compose =
       return curr(state, acc);
     }, data);
   };
-
 
 export { FilterByCategory, Compose };

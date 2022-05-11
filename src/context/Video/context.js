@@ -49,7 +49,8 @@ const VideoProvider = ({ children }) => {
         videos: getFilteredVideos,
         showModal,
         setShowModal,
-        video, setVideo
+        video,
+        setVideo,
       }}
     >
       {children}

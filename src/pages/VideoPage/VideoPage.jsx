@@ -23,10 +23,6 @@ import {
   likeVideo,
   unLikeVideo,
 } from "../../context/Video/liked";
-import {
-  isVideoPresentInPlaylist,
-  removeVideoFromPlaylist,
-} from "../../context/Video/playlist";
 import { Modal } from "../../components";
 export const VideoPage = () => {
   const { videoId } = useParams();
@@ -35,11 +31,11 @@ export const VideoPage = () => {
 
   const { authState } = useAuth();
   const { isLoggedIn } = authState;
-  const { videos, liked, watchLater, playlists } = videoState;
+  const { videos, liked, watchLater, playlists, history } = videoState;
 
   const opts = {
     playerVars: {
-      autoplay: 1,
+      autoplay: 0,
     },
   };
 
@@ -51,9 +47,6 @@ export const VideoPage = () => {
   const isLiked = isVideoLiked(data?._id, liked);
   const isWatchLater = isVideoWatchlater(data?._id, watchLater);
 
-  const handlePlay = () => {
-    addToHistory(isLoggedIn, data, videoDispatch);
-  };
   return (
     <>
       <div className="videoplayer-container">
@@ -61,7 +54,7 @@ export const VideoPage = () => {
           class="video-iframe"
           videoId={videoId}
           opts={opts}
-          onReady={handlePlay}
+          onReady={() => addToHistory(isLoggedIn, data, videoDispatch)}
         />
       </div>
       <div className="video-footer">

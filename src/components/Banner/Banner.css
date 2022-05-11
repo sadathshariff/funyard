@@ -1,6 +1,7 @@
 .hero_container {
   height: 60vh;
   margin: 0rem auto;
+  width: 70vw;
 }
 
 .hero {
@@ -16,7 +17,7 @@
   }
 
   .hero_container {
-    /* width: 350px; */
+    width: 350px;
     margin: 0 auto;
     height: max-content;
   }

@@ -22,27 +22,31 @@ export const getAllWatchLater = async (isLoggedIn, videoDispatch) => {
 };
 
 export const addToWatchlater = async (isLoggedIn, video, videoDispatch) => {
-  try {
-    const res = await axios.post(
-      "/api/user/watchlater",
-      { video },
-      {
-        headers: {
-          authorization: isLoggedIn,
-        },
-      }
-    );
+  if (isLoggedIn) {
+    try {
+      const res = await axios.post(
+        "/api/user/watchlater",
+        { video },
+        {
+          headers: {
+            authorization: isLoggedIn,
+          },
+        }
+      );
 
-    if (res.status === 201) {
-      videoDispatch({
-        type: "ADD_TO_WATCHLATER",
-        payload: res.data.watchlater,
-      });
-      ToastMsg("Video added to Watchlater", "success");
+      if (res.status === 201) {
+        videoDispatch({
+          type: "ADD_TO_WATCHLATER",
+          payload: res.data.watchlater,
+        });
+        ToastMsg("Video added to Watchlater", "success");
+      }
+    } catch (error) {
+      console.log(error);
+      ToastMsg("Couln't add to Watchlater,try again later", "error");
     }
-  } catch (error) {
-    console.log(error);
-    ToastMsg("Couln't add to Watchlater,try again later", "error");
+  } else {
+    ToastMsg("Please Login to continue", "warning");
   }
 };
 

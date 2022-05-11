@@ -4,8 +4,8 @@
   margin-top: 1rem;
 }
 .components-div {
-  flex-basis: 80%;
-  margin-left: 1rem;
+  margin-left: 16rem;
+  flex: 1;
 }
 
 .m-tb-1 {

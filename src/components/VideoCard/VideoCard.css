@@ -4,10 +4,10 @@
   width: 18rem;
   height: 15rem;
   margin: 1rem;
-  border-radius: 5px 5px;
+  border-radius: 5px;
 }
 .videoCard:hover {
-  box-shadow: 0 0 9px 1px var(--success-color);
+  box-shadow: 0 0 3px 1px var(--secondary-color);
   cursor: pointer;
 }
 
@@ -23,7 +23,6 @@
   background-color: var(--secondary-color);
   display: flex;
   flex-direction: row;
-
   padding: 0.5rem;
   margin-top: 0.5rem;
   border-radius: 10px;
