@@ -23,10 +23,6 @@ import {
   likeVideo,
   unLikeVideo,
 } from "../../context/Video/liked";
-import {
-  isVideoPresentInPlaylist,
-  removeVideoFromPlaylist,
-} from "../../context/Video/playlist";
 import { Modal } from "../../components";
 export const VideoPage = () => {
   const { videoId } = useParams();
@@ -58,10 +54,7 @@ export const VideoPage = () => {
           class="video-iframe"
           videoId={videoId}
           opts={opts}
-          onPlay={() => {
-            // !history?.map((item) => item._id === data._id) &&
-            addToHistory(isLoggedIn, data, videoDispatch);
-          }}
+          onReady={() => addToHistory(isLoggedIn, data, videoDispatch)}
         />
       </div>
       <div className="video-footer">
