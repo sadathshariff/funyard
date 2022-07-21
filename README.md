@@ -1,7 +1,7 @@
 <div align="center">
   
 # FunYard
-  A video library website based for Fun/Comdey Videos
+  A video library website based for Fun/Comedy  Videos
 </div>
 
 ### Live Link
